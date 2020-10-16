@@ -1,0 +1,420 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>关于英雄头条的一些感悟 | 蔡英雄的个人博客🤭</title><meta name="keywords" content="项目总结,Vue.js"><meta name="author" content="蔡英雄,caiyx0666@163.com"><meta name="copyright" content="蔡英雄"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="英雄头条（移动端）的一些感悟项目介绍英雄头条是一个通用信息平台，致力于连接人与信息，让优质丰富的信息得到高效精准的分发，促使信息创造价值。 英雄头条目前拥有推荐引擎、搜索引擎、关注订阅和内容运营等多种分发方式，囊括图文、视频、问答等多种内容体裁，并涵盖科技、体育、健康、美食、教育等多个内容领域。 英雄头条包括移动端前台浏览文章、个人中心、评论等页面。Pc端后台管理文章、发布文章、编辑文章等。 项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于英雄头条的一些感悟">
+<meta property="og:url" content="http://example.com/2020/10/16/yxtoutiao/index.html">
+<meta property="og:site_name" content="蔡英雄的个人博客🤭">
+<meta property="og:description" content="英雄头条（移动端）的一些感悟项目介绍英雄头条是一个通用信息平台，致力于连接人与信息，让优质丰富的信息得到高效精准的分发，促使信息创造价值。 英雄头条目前拥有推荐引擎、搜索引擎、关注订阅和内容运营等多种分发方式，囊括图文、视频、问答等多种内容体裁，并涵盖科技、体育、健康、美食、教育等多个内容领域。 英雄头条包括移动端前台浏览文章、个人中心、评论等页面。Pc端后台管理文章、发布文章、编辑文章等。 项目">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://pic.netbian.com/uploads/allimg/191121/224644-1574347604d36e.jpg">
+<meta property="article:published_time" content="2020-10-16T05:53:08.000Z">
+<meta property="article:modified_time" content="2020-10-16T05:54:55.135Z">
+<meta property="article:author" content="蔡英雄">
+<meta property="article:tag" content="项目总结">
+<meta property="article:tag" content="Vue.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://pic.netbian.com/uploads/allimg/191121/224644-1574347604d36e.jpg"><link rel="shortcut icon" href="https://pic.downk.cc/item/5f85574e1cd1bbb86ba5685e.jpg"><link rel="canonical" href="http://example.com/2020/10/16/yxtoutiao/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-10-16 13:54:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://pic.downk.cc/item/5f85574e1cd1bbb86ba5685e.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">2</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 時間軸</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音樂</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(http://pic.netbian.com/uploads/allimg/191121/224644-1574347604d36e.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">蔡英雄的个人博客🤭</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 時間軸</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音樂</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">关于英雄头条的一些感悟</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-10-16T05:53:08.000Z" title="发表于 2020-10-16 13:53:08">2020-10-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-10-16T05:54:55.135Z" title="更新于 2020-10-16 13:54:55">2020-10-16</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="英雄头条（移动端）的一些感悟"><a href="#英雄头条（移动端）的一些感悟" class="headerlink" title="英雄头条（移动端）的一些感悟"></a>英雄头条（移动端）的一些感悟</h1><h2 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h2><p>英雄头条是一个通用信息平台，致力于连接人与信息，让优质丰富的信息得到高效精准的分发，促使信息创造价值。</p>
+<p>英雄头条目前拥有推荐引擎、搜索引擎、关注订阅和内容运营等多种分发方式，囊括图文、视频、问答等多种内容体裁，并涵盖科技、体育、健康、美食、教育等多个内容领域。</p>
+<p>英雄头条包括移动端前台浏览文章、个人中心、评论等页面。Pc端后台管理文章、发布文章、编辑文章等。</p>
+<h3 id="项目原型"><a href="#项目原型" class="headerlink" title="项目原型"></a>项目原型</h3><p><a target="_blank" rel="noopener" href="http://cai-yingxiong.gitee.io/yxtoutiao/#/">英雄头条前台</a>这个是前台的页面，建议在移动端上打开😜</p>
+<p><strong>英雄头条后台因为线上的服务器数据的错乱这里就不展示了</strong>😳</p>
+<h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><ul>
+<li>Vue</li>
+<li>Vue-router</li>
+<li>Element-ui</li>
+<li>Vue2Editor 富文本编辑器</li>
+<li>Vant</li>
+<li>Axios</li>
+<li>Token</li>
+</ul>
+<h2 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h2><p>因为接触Vue的时间不长，不久前刚学习完Vue的基本使用，所以想通过该项目来加深对Vue框架的了解，其目的也是为了学习vue框架的使用，使我能从中学习到很多以后工作有用的东西，一切都是为了工作！！！💪</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这是一个使用 <code>Vue-cli</code> 脚手架创建的项目，因为之前已经系统的学习过Vue的基本使用了，所以这里就不介绍的那么详细，就简单的总结一下通过这个项目学习到的东西和难点🤭</p>
+<h3 id="路由守卫-导航守卫"><a href="#路由守卫-导航守卫" class="headerlink" title="路由守卫(导航守卫)"></a>路由守卫(导航守卫)</h3><p>官方解释：  正如其名，<code>vue-router</code> 提供的导航守卫主要用来通过跳转或取消的方式守卫导航。有多种机会植入路由导航过程中：全局的, 单个路由独享的, 或者组件级的。 </p>
+<h4 id="使用背景"><a href="#使用背景" class="headerlink" title="使用背景"></a>使用背景</h4><p>在我们登录进到一个需要 <code>token</code> 权限的网站的时候，如果本地的 token 值被删除，或者是通过另外的方法进入到该页面时，我们需要用到路由守卫，路由守卫可以理解为<strong>页面跳转之前</strong>的拦截手段，可以在拦截时判断验证用户信息，再决定是否允许用户跳转到该页面。</p>
+<h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4><p>在  <code>src/main.js</code>  文件里注册一个 router.beforeEach  全局前置守卫</p>
+<p><strong>目标:</strong> 使用路由守卫, 每当跳转到个人中心的时候, 先校验 token 如果没有,重定向到登录页</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&#x27;./router&#x27;</span>        <span class="comment">// 需引入router</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入了 router 以后就可以创建路由守卫</span></span><br><span class="line"><span class="comment">// beforeEach 是全局前置守卫，会拦截所有的页面跳转</span></span><br><span class="line"><span class="comment">// 接受一个回调函数作为参数，对调转进行处理</span></span><br><span class="line">router.beforeEach(<span class="function">(<span class="params">to,<span class="keyword">from</span>,next</span>) =&gt;</span>&#123;</span><br><span class="line">    <span class="comment">// 这个函数默认有三个参数</span></span><br><span class="line">    <span class="comment">// to 目的地的路由配置</span></span><br><span class="line">    <span class="comment">// from  来源路由配置</span></span><br><span class="line">    <span class="comment">// next  正常继续下面操作的放行函数</span></span><br><span class="line">    <span class="comment">// 判断要跳转到的页面是否为个人主页</span></span><br><span class="line">    <span class="keyword">if</span> (to.path == <span class="string">&#x27;/personage&#x27;</span>) &#123;</span><br><span class="line">        <span class="comment">// 判断本地是否存在 token</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">localStorage</span>.getItem(<span class="string">&#x27;token&#x27;</span>)) &#123;</span><br><span class="line">            <span class="comment">// 有登录就放行</span></span><br><span class="line">            next()</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 没有登录就跳转到登录页</span></span><br><span class="line">            router.push(<span class="string">&#x27;/login&#x27;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 不是跳转到个人主页就不管</span></span><br><span class="line">        next()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这是在个人中心页退出到登录页时通过在导航卫士中打印的 <code>to</code> 的信息</p>
+<p><img src="D:\前端开发\线下英雄学习\笔记汇总\学习感悟\images\router_to.png"></p>
+<p><strong>注意点：</strong></p>
+<p>守卫方法接收三个参数：</p>
+<ul>
+<li>to：代表要跳转到哪个路由（页面），我们可以通过 <code>to.path</code> 获取要跳转到的页面的地址，</li>
+<li>from：代表从哪个路由跳转过来，<code>from.path</code> 一样可以拿到从哪个页面跳转过来的地址</li>
+<li>next：是一个函数，必须要调用才能跳转到下一个页面，不调用则不跳转,所以一定要记得next()<ul>
+<li>next() : 表示正常跳转到下一页</li>
+<li><strong>(新版不能这么用)</strong>  next(“/login”) 表示重定向到指定的页面 </li>
+<li>最新的路由, 重定向可以使用 router.push (不在组件内就没有 this.$router 了)</li>
+</ul>
+</li>
+</ul>
+<p><strong>补充</strong>:</p>
+<p>在我们的项目中有很多个页面都是需要有权限 <code>token</code> 才能进入，所以我们这里要对 <code>to.path</code> 进行多次验证，但是像上述方法一样的话就显得代码有点冗余了，这里的话，我想到了两种方法：</p>
+<p>第一种：</p>
+<p>通过将所有需要进行验证的页面全都放在一个数组中，再判断 <code>to.path</code> 是否存在该数组当中即可</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 将所有需要校验的页面提出来，变成一个数组管理</span></span><br><span class="line">        <span class="comment">// 2、只需要判断 to.path 是否存在于数组中即可</span></span><br><span class="line">        <span class="keyword">const</span> pageNeedAuth = [</span><br><span class="line">            <span class="string">&#x27;/personage&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;/compile&#x27;</span></span><br><span class="line">        ]</span><br><span class="line">        <span class="keyword">if</span> (pageNeedAuth.indexOf(to.path) &gt; <span class="number">-1</span>) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">localStorage</span>.getItem(<span class="string">&#x27;token&#x27;</span>)) &#123;</span><br><span class="line">            <span class="comment">// 有登录就放行</span></span><br><span class="line">            next()</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 没有登录就跳转到登录页</span></span><br><span class="line">            router.push(<span class="string">&#x27;/login&#x27;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 不是跳转到个人主页就不管</span></span><br><span class="line">        next()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>第二种：</p>
+<p>我们可以通过利用路由 meta 属性，配置是否需要登录的选项，如果要登录就设置 needAuth == true</p>
+<p><code>src/router/index.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        path: <span class="string">&#x27;/personage&#x27;</span>, <span class="comment">// 个人中心</span></span><br><span class="line">        name: <span class="string">&#x27;Personage&#x27;</span>,</span><br><span class="line">        component: Personage,</span><br><span class="line">        meta: &#123;</span><br><span class="line">            needAuth: <span class="literal">true</span>  <span class="comment">// 需要验证</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p><code>src/main.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 利用路由 meta 属性，配置是否需要登录的选项</span></span><br><span class="line">    <span class="comment">// 判断是否需要验证</span></span><br><span class="line">    <span class="keyword">if</span> (to.path.needAuth) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">localStorage</span>.getItem(<span class="string">&#x27;token&#x27;</span>)) &#123;</span><br><span class="line">            <span class="comment">// 有登录就放行</span></span><br><span class="line">            next()</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 没有登录就跳转到登录页</span></span><br><span class="line">            router.push(<span class="string">&#x27;/login&#x27;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 不是跳转到个人主页就不管</span></span><br><span class="line">        next()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以，这两种方法效果都是一样的，但是个人感觉第二种方法会方便一点，比较这样的话，在进行路由配置的时候就可以对其进行需要验证的设置了，不用再找到 <code>main.js</code> 文件的路由导航部分进行添加了🤭</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结:"></a>小结:</h4><ol>
+<li>创建路由守卫</li>
+<li>在回调中校验权限 (是否有 token)</li>
+<li>如果有 token 合法访问, return next();</li>
+<li>如果没有就是非法访问, return  router.push({path:’/login’}) 跳转到登录页</li>
+<li>最后在整个路由守卫的最下方必须有一个 next() 用来处理其他页面的情况</li>
+<li>每个页面都会执行全局守卫</li>
+</ol>
+<h3 id="axios设置默认基准路径"><a href="#axios设置默认基准路径" class="headerlink" title="axios设置默认基准路径"></a>axios设置默认基准路径</h3><h4 id="使用背景-1"><a href="#使用背景-1" class="headerlink" title="使用背景"></a>使用背景</h4><p>每次发送请求的时候都要添加服务器地址的问题：</p>
+<ol>
+<li>重复、太麻烦了…</li>
+<li>假如有一天,你的服务器搬迁了, 换服务器了, 比如从在线的变成本地的 http:127.0.0.1:3000，维护起来就很麻烦</li>
+</ol>
+<h4 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h4><p>我们可以提取请求的统一的服务器域名的部分进行抽离设置</p>
+<p>在 <code>main.js</code> 文件中 里面设置 <code>axios.defaults.baseURL</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">axios.dafaults.baseURL = <span class="string">&#x27;http://157.122.54.189:9083&#x27;</span>    <span class="comment">// 在线的服务器</span></span><br><span class="line"><span class="comment">// axios.dafaults.baseURL = &#x27;http://127.0.0.1：3000&#x27;        // 本地服务器</span></span><br></pre></td></tr></table></figure>
+
+<p>这样，我们在发送请求的时候，就不用再写服务器地址了</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.$axios(&#123;</span><br><span class="line">	url:<span class="string">&#x27;/login&#x27;</span>,</span><br><span class="line">	data:&#123;&#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="axios拦截器"><a href="#axios拦截器" class="headerlink" title="axios拦截器"></a>axios拦截器</h3><p>在请求或响应被 <code>then</code> 或 <code>catch</code> 函数处理前拦截它们</p>
+<h4 id="使用背景-2"><a href="#使用背景-2" class="headerlink" title="使用背景"></a>使用背景</h4><p>如果用户使用错误的 <code>token</code> 绕过了全局导航守卫，进入了页面，页面会发送请求，如果响应的是用户信息验证失败，就应该在页面内部进行跳转，如果每个页面都这么写的话，就比较烦。而且，在我们发送请求的时候，大多都是要经过验证的，也就是在发送请求的时候，需要在请求头 <code>headers</code> 中添加验证信息 <code>token</code> ,但是每个请求都写就显得有点烦人了🤯，所以这里用我们 axios 的拦截器来做再合适不过了。</p>
+<h4 id="使用方法-2"><a href="#使用方法-2" class="headerlink" title="使用方法"></a>使用方法</h4><p>附上图解</p>
+<p><img src="D:\前端开发\线下英雄学习\笔记汇总\学习感悟\images\axios.png"></p>
+<p><code>src/main.js</code> 文件中</p>
+<ol>
+<li>因为需要统一处理错误, 所以是全局的, 再 main.js 当中声明拦截器</li>
+<li><code>axios.interceptors.resquest.use()</code>声明一个请求拦截器, 可以接受一个回调函数做参数, 带有请求数据 config ， 响应拦截器的声明方法只要将上述方法中的 <code>request</code> 更改为 <code>response</code> 就可以了，一样可以接收一个回调函数做参数，带有响应数据 res</li>
+<li>拦截器拦截数据, 处理后必须放行 (return)</li>
+<li>将我们的错误逻辑从 .then 抽离出来放到响应拦截器里面</li>
+</ol>
+<h5 id="请求拦截器"><a href="#请求拦截器" class="headerlink" title="请求拦截器"></a>请求拦截器</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个请求拦截器</span></span><br><span class="line">axios.interceptors.request.use(<span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 这里可以接收一个形参，拿到当前请求的配置</span></span><br><span class="line">    <span class="comment">// 如果本地存在 token 并且 请求数据中没有设置 token 就拦截下来给请求头添加 token</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">localStorage</span>.getItem(<span class="string">&#x27;token&#x27;</span>) &amp;&amp; !config.headers.Authorization) &#123;</span><br><span class="line">        config.headers.Authorization = <span class="string">&quot;Bearer &quot;</span> + <span class="built_in">localStorage</span>.getItem(<span class="string">&#x27;token&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 继续发送请求</span></span><br><span class="line">    <span class="keyword">return</span> config</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="响应拦截器"><a href="#响应拦截器" class="headerlink" title="响应拦截器"></a>响应拦截器</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个响应拦截器</span></span><br><span class="line">axios.interceptors.response.use(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// res 为发送请求后返回的数据</span></span><br><span class="line">    <span class="comment">// 判断进来的用户是否有权限</span></span><br><span class="line">    <span class="keyword">if</span> (res.data.message == <span class="string">&#x27;用户信息验证失败&#x27;</span>) &#123;</span><br><span class="line">        <span class="comment">// 清除错误数据，再跳转</span></span><br><span class="line">        <span class="built_in">localStorage</span>.clear()</span><br><span class="line">        router.replace(<span class="string">&#x27;/login&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 除了明确用户信息验证失败跳转到登录页以外</span></span><br><span class="line">    <span class="comment">// 还可以封装其他的通用处理，比如 状态码 statusCode 是以4开头的三位数的请求</span></span><br><span class="line">    <span class="comment">// 不知道如何处理的情况下，只需统一将 message 给提示出来就可以了</span></span><br><span class="line">    <span class="comment">// 统一处理发送请求错误</span></span><br><span class="line">    <span class="keyword">const</span> reg = <span class="regexp">/^4\d&#123;2&#125;$/</span></span><br><span class="line">    <span class="keyword">if</span> (reg.test(res.data.statusCode)) &#123;</span><br><span class="line">        Toast.fail(res.data.message)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意点</strong></p>
+<ol>
+<li><p><code>src/main.js</code> 文件中如果想使用 vant 组件的话，因为之前的配置是全局的，在这里是不能用的，所以要单独引入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Toast &#125; from &#39;vant&#39;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在不知道是否为错误的情况下，检查 res.data.statusCode 如果存在并且是 4 开头的三位数, 那么就可以证明出错</p>
+</li>
+<li><p>记得处理拦截后必须放行, 不然就卡死在这了</p>
+</li>
+<li><p><strong>导航守卫(路由守卫) 跟 响应拦截器 容易混淆, 但是作用很不一样, 特别是生效时间点</strong></p>
+</li>
+</ol>
+<p><img src="D:\前端开发\线下英雄学习\笔记汇总\学习感悟\images\axios_router.png"></p>
+<h3 id="首页Tab-标签页和文章组件的使用"><a href="#首页Tab-标签页和文章组件的使用" class="headerlink" title="首页Tab 标签页和文章组件的使用"></a>首页Tab 标签页和文章组件的使用</h3><p>这里首页的主要内容是依靠 Vant 组件库中的Tab标签页组件 配合 自己封装的文章组件完成的。这里还添加了 Vant组件库的 List组件，实现下拉加载更多功能，并做了优化处理，所以自己认为对初学者的我还是有一定的难度的😁</p>
+<p>这里附上 <a target="_blank" rel="noopener" href="https://youzan.github.io/vant/#/zh-CN/">Vant组件库的地址</a></p>
+<p>这是我自己封装的首页文章组件</p>
+<p>忽略其中的样式和 js 部分</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">&quot;$router.push(`/postdetail?id=$&#123;postData.id&#125;`)&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 专门显示单图片新闻 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 1. type == 1</span></span><br><span class="line"><span class="comment">      2. cover.length &gt;=1 &amp;&amp; &lt; 3 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">            </span></span><br><span class="line"><span class="tag">            <span class="attr">class</span>=<span class="string">&quot;singleNews&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">v-if</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="tag"><span class="string">                postData.type == 1 &amp;&amp;</span></span></span><br><span class="line"><span class="tag"><span class="string">                postData.cover.length &gt;= 1 &amp;&amp;</span></span></span><br><span class="line"><span class="tag"><span class="string">                postData.cover.length &lt; 3</span></span></span><br><span class="line"><span class="tag"><span class="string">            &quot;</span></span></span><br><span class="line"><span class="tag">        &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span></span><br><span class="line">                    &#123;&#123; postData.title &#125;&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;info&quot;</span>&gt;</span></span><br><span class="line">                    &#123;&#123; postData.user.nickname &#125;&#125;</span><br><span class="line">                    &#123;&#123; postData.comment_length &#125;&#125; 跟帖</span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">&quot;fnFixImgUrl(postData.cover[0].url)&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span> <span class="attr">class</span>=<span class="string">&quot;cover&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 专门显示多图片新闻 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 1. type == 1</span></span><br><span class="line"><span class="comment">      2. cover.length &gt;= 3 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">            </span></span><br><span class="line"><span class="tag">            <span class="attr">class</span>=<span class="string">&quot;multipNews&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">v-if</span>=<span class="string">&quot;postData.type == 1 &amp;&amp; postData.cover.length &gt;= 3&quot;</span></span></span><br><span class="line"><span class="tag">        &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span>&#123;&#123; postData.title &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;coversWrapper&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;cover&quot;</span> <span class="attr">:src</span>=<span class="string">&quot;fnFixImgUrl(postData.cover[0].url)&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;cover&quot;</span> <span class="attr">:src</span>=<span class="string">&quot;fnFixImgUrl(postData.cover[1].url)&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;cover&quot;</span> <span class="attr">:src</span>=<span class="string">&quot;fnFixImgUrl(postData.cover[2].url)&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;info&quot;</span>&gt;</span></span><br><span class="line">                &#123;&#123; postData.user.nickname &#125;&#125; &#123;&#123; postData.comment_length &#125;&#125; 跟帖</span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 专门显示视频 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 1. type == 2</span></span><br><span class="line"><span class="comment">      2. 封面最少有一张 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">            </span></span><br><span class="line"><span class="tag">            <span class="attr">class</span>=<span class="string">&quot;singleVideo&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">v-if</span>=<span class="string">&quot;postData.type == 2 &amp;&amp; postData.cover.length &gt;= 1&quot;</span></span></span><br><span class="line"><span class="tag">        &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span>&#123;&#123; postData.title &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;coverWrapper&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">&quot;fnFixImgUrl(postData.cover[0].url)&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span> <span class="attr">class</span>=<span class="string">&quot;cover&quot;</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;iconfont iconshipin&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;info&quot;</span>&gt;</span></span><br><span class="line">                &#123;&#123; postData.user.nickname &#125;&#125; &#123;&#123; postData.comment_length &#125;&#125; 跟帖</span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>想要让我们的组件显示只要传入一个 <code>postData</code> 单个文章数据就能渲染出来，配合我们 Vant 中的tab标签页组件使用正常渲染问题都不大，</p>
+<h4 id="问题说明"><a href="#问题说明" class="headerlink" title="问题说明"></a>问题说明</h4><p>但是也存在一个致命的问题，那就是，我们每一次切换页面都要发送请求，不管是否浏览过该栏目都会再次发送请求，这样的话，对服务器造成的负担会比较大。所以，这里要进行一下优化</p>
+<p>实现方法：</p>
+<ol>
+<li><p>在页面获取所有的栏目时，在给每一个栏目数据添加一个空的数组来放置相应的文章列表数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">getcategoryList()&#123;</span><br><span class="line">      <span class="built_in">this</span>.$axios(&#123;</span><br><span class="line">        url:<span class="string">&#x27;/category&#x27;</span>     <span class="comment">// 获取所有的栏目数据</span></span><br><span class="line">      &#125;).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.categoryList = res.data.data.map(<span class="function"><span class="params">category</span> =&gt;</span>&#123;</span><br><span class="line">          <span class="keyword">return</span>&#123;</span><br><span class="line">            ...category,</span><br><span class="line">            <span class="comment">// 在获取文章分类时添加 postList空数组来存储文章列表数组</span></span><br><span class="line">            postList: [],</span><br><span class="line">            pageIndex:<span class="number">1</span>, <span class="comment">// 当前页数</span></span><br><span class="line">            pageSize:<span class="number">5</span>,  <span class="comment">// 每页数据条数</span></span><br><span class="line">            loading:<span class="literal">false</span>,  <span class="comment">// 当前是否在加载中</span></span><br><span class="line">            finished:<span class="literal">false</span>, <span class="comment">// 是否加载完毕</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">         <span class="comment">// 加载相应的文章数据</span></span><br><span class="line">        <span class="built_in">this</span>.loadPost()</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在每次激活该栏目的时候，在获取到相应的文章数据时，就将相应的文章数据添加到相应的栏目生成的空数组 <code>postList</code> 中,如果有新的文章就将新的数据拼接在之前的数据后面</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">loadPost()&#123;</span><br><span class="line">      <span class="built_in">this</span>.$axios(&#123;</span><br><span class="line">        url:<span class="string">&#x27;/post&#x27;</span>,</span><br><span class="line">        params:&#123;</span><br><span class="line">          <span class="comment">// 传入文章分类的id</span></span><br><span class="line">          category:<span class="built_in">this</span>.curCate.id,</span><br><span class="line">          pageIndex:<span class="built_in">this</span>.curCate.pageIndex, <span class="comment">// 当前页数</span></span><br><span class="line">          pageSize:<span class="built_in">this</span>.curCate.pageSize, </span><br><span class="line">        &#125;</span><br><span class="line">      &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span>&#123;</span><br><span class="line">        <span class="comment">// 将获取到的文章列表添加到文章分类中对应的位置中去</span></span><br><span class="line">        <span class="built_in">this</span>.curCate.postList = [</span><br><span class="line">          ...this.curCate.postList,</span><br><span class="line">          ...res.data.data</span><br><span class="line">        ]</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在我们监听到了分类栏目发生变化的时候，我们要进行相应的判断，当前栏目分类的 <code>postList</code> 是否存在文章列表数据，若是不存在，再发送请求</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">activeIndex()&#123;</span><br><span class="line">       <span class="comment">// 这里检测到分类切换，加载新分类数据</span></span><br><span class="line">        <span class="comment">// 但是，由于我们已经分栏目管理数据了</span></span><br><span class="line">        <span class="comment">// 只有文章不存在时才会发送请求获取文章列表</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span>.curCate.postList.length == <span class="number">0</span>)&#123;</span><br><span class="line">          <span class="built_in">this</span>.loadPost()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样，我们就可以达到我们要的效果了🤭</p>
+</li>
+</ol>
+<h4 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h4><p>其实这个在完成项目完成之后，回过头来看就觉得也不是很难，主要是数据有点复杂，一层套一层，刚开始敲的时候很难理清楚。索性最后还是理清楚了🤭</p>
+<h3 id="递归组件实现评论模块"><a href="#递归组件实现评论模块" class="headerlink" title="递归组件实现评论模块"></a>递归组件实现评论模块</h3><p>说起递归组件，对于一个初学者还是有一定的威慑力的😜，这里作为回顾的话，就把递归也一起复习一下吧</p>
+<h4 id="什么是递归"><a href="#什么是递归" class="headerlink" title="什么是递归"></a>什么是递归</h4><p>递归就是一个函数直接或间接的调用自己，我们在使用的时候一定要让它能够停下来，否则停不下来的话会出事喔🤭</p>
+<h4 id="什么是递归组件"><a href="#什么是递归组件" class="headerlink" title="什么是递归组件"></a>什么是递归组件</h4><p>其实递归组件跟递归是差不多的，只是递归是函数自身的调用，而递归组件则是组件在满足一定的条件下组件内部调用自身，话不多说，直接上代码👇</p>
+<p><img src="D:\前端开发\线下黑马学习\笔记汇总\学习感悟\images\comment.png"></p>
+<p><img src="D:\前端开发\线下黑马学习\笔记汇总\学习感悟\images\commentList.png"></p>
+<h4 id="分析思路"><a href="#分析思路" class="headerlink" title="分析思路"></a>分析思路</h4><p>这是我们从服务器拿到的数据还有我们要实现的样式，一个评论里面还有可能在嵌套多一个评论数据 <code>parent</code> 。所以我们的递归组件的条件便是这个 <code>parent</code> 是否存在，又考虑到这个最外部的主评论的样式中还包括了其他的一些样式，所以我们这里就创建了两个组件，一个父组件编写最外层的主评论，子组件来完成评论内部的递归组件。父组件中嵌套子组件，来完成我们的评论列表的渲染</p>
+<p>子组件结构如下👇</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;parentWrapper&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">Parent</span> <span class="attr">v-if</span>=<span class="string">&quot;parentData.parent&quot;</span> <span class="attr">:parentData</span>=<span class="string">&quot;parentData.parent&quot;</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;info&quot;</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;name&quot;</span>&gt;</span>&#123;&#123; parentData.user.nickname &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;date&quot;</span>&gt;</span>3小时前<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;btnReply&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;headleClick&quot;</span>&gt;</span>回复<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ParentContent&quot;</span>&gt;</span></span><br><span class="line">              &#123;&#123; parentData.content &#125;&#125;</span><br><span class="line">		  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意点</strong></p>
+<p>组件内部调用自身，要记得给自身设置 <code>name</code> 属性</p>
+<h3 id="事件总线EventBus"><a href="#事件总线EventBus" class="headerlink" title="事件总线EventBus"></a>事件总线EventBus</h3><h4 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h4><p>在Vue中可以使用 <code>EventBus</code> 来作为沟通桥梁的概念，就像是所有组件共用相同的事件中心，可以向该中心注册发送事件或接收事件，所以组件都可以上下平行地通知其他组件，但也就是太方便所以若使用不慎，就会造成难以维护的灾难，因此才需要更完善的Vuex作为状态管理中心，将通知的概念上升到共享状态层次 </p>
+<h4 id="使用背景-3"><a href="#使用背景-3" class="headerlink" title="使用背景"></a>使用背景</h4><p>由于递归组件的多层嵌套，我们在完成评论的发布功能的时候传递数据和响应事件就显的特别麻烦，但是这个时候我还没有学习vuex，所以就使用到了事件总线 <code>EventBus</code> </p>
+<h4 id="使用方法-3"><a href="#使用方法-3" class="headerlink" title="使用方法"></a>使用方法</h4><ol>
+<li>创建事件总线并将其导出，以便其它模块可以使用或者监听它。我们可以通过两种方式来实现。先来看第一种，新创建一个js文件，比如 <code>eventBus.js</code> ,第二种方法就是直接在 <code>main.js</code> 文件中初始化 <code>eventBus</code></li>
+</ol>
+<p>   <code>ulit/eventBus.js</code></p>
+   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里创建一个 vue 实例</span></span><br><span class="line"><span class="comment">// 作为公共事件总线 eventBus</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">const</span> eventBus = <span class="keyword">new</span> Vue()</span><br><span class="line"><span class="comment">// 将这个实例导出</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> eventBus</span><br></pre></td></tr></table></figure>
+
+<p>   <code>main.js</code></p>
+   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype.$EventBus = <span class="keyword">new</span> Vue()</span><br></pre></td></tr></table></figure>
+
+<p>   这两种方法任选一种即可，这里我使用的是第一种方法。</p>
+<ol start="2">
+<li><p>接下来就是发送事件了，比如我们要在父组件上监听子组件中的恢复按钮 <code>click</code> 事件 <code>headleClick</code> ,我们需要在子组件中引入我们的事件总线，在通过我们的 <code>eventBus.$emit()</code> ，将我们的事件发送出去</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> eventBus <span class="keyword">from</span> <span class="string">&#x27;../../utils/eventBus&#x27;</span>   <span class="comment">// 引入我们的事件总线</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    methods:&#123;</span><br><span class="line">        headleClick()&#123;</span><br><span class="line">            <span class="comment">// callReply为传递过去的事件名，可以自定义，this.parentData为传递过去的数据</span></span><br><span class="line">            eventBus.$emit(<span class="string">&#x27;callReply&#x27;</span>, <span class="built_in">this</span>.parentData)</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>再就是在父组件中接收事件了，我们需要在父组件中引入我们的事件总线，在通过我们的<code>eventBus.$on</code> 来监听事件，这个事件可以接收两个参数，第一个为要监听的时间名，也就是子组件传递过来的事件名，第二个参数为一个函数，可以接收到子组件传递过来的数据，然后再函数内部处理相关的业务逻辑就可以了</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">created()&#123;</span><br><span class="line">       <span class="comment">// 可以监听这个实例触发的时间</span></span><br><span class="line">       <span class="comment">// 有两个参数</span></span><br><span class="line">       <span class="comment">// 一个事件名</span></span><br><span class="line">       <span class="comment">// 回调函数，一样可以接受数据</span></span><br><span class="line">       eventBus.$on(<span class="string">&#x27;callReply&#x27;</span>,<span class="function">(<span class="params">comment</span>)=&gt;</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(comment)      </span><br><span class="line">           <span class="comment">// 这里打印出来的结果就是子组件传递过来的数据，this.parentData</span></span><br><span class="line">       &#125;),</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最后当然就是在页面销毁的时候销毁监听事件了😁，大家都知道<code>vue</code>是单页应用，如果你在某一个页面刷新了之后，与之相关的<code>EventBus</code>会被移除，这样就导致业务走不下去。还要就是如果业务有反复操作的页面，<code>EventBus</code>在监听的时候就会触发很多次，也是一个非常大的隐患。这时候我们就需要好好处理<code>EventBus</code>在项目中的关系。通常会用到，在<code>vue</code>页面销毁时，同时移除<code>EventBus</code>事件监听。我们只需要在监听事件的页面上添加下面这几行代码就可以了👇</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">destroyed() &#123;</span><br><span class="line">    <span class="comment">// 销毁时取消监听</span></span><br><span class="line">    eventBus.$off(<span class="string">&#x27;callReply&#x27;</span>)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p> 这样，我们的整个事件总线的使用就可以达到我们想要的效果了😄</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:caiyx0666@163.com">蔡英雄</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/10/16/yxtoutiao/">http://example.com/2020/10/16/yxtoutiao/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">蔡英雄的个人博客🤭</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/">项目总结</a><a class="post-meta__tags" href="/tags/Vue-js/">Vue.js</a></div><div class="post_share"><div class="social-share" data-image="http://pic.netbian.com/uploads/allimg/191121/224644-1574347604d36e.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/10/13/debounce-throttle/"><img class="next-cover" src="http://pic.netbian.com/uploads/allimg/200923/225226-16008727469e09.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">函数防抖和函数节流</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://pic.downk.cc/item/5f85574e1cd1bbb86ba5685e.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">蔡英雄</div><div class="author-info__description">爱学习的一名web前端工程师</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length_num">2</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length_num">3</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/caiyx0666" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/caiyx0666@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8B%B1%E9%9B%84%E5%A4%B4%E6%9D%A1%EF%BC%88%E7%A7%BB%E5%8A%A8%E7%AB%AF%EF%BC%89%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%82%9F"><span class="toc-number">1.</span> <span class="toc-text">英雄头条（移动端）的一些感悟</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">项目介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%8E%9F%E5%9E%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">项目原型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="toc-number">1.1.2.</span> <span class="toc-text">技术栈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF"><span class="toc-number">1.2.</span> <span class="toc-text">项目背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-number">1.3.1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB-%E5%AF%BC%E8%88%AA%E5%AE%88%E5%8D%AB"><span class="toc-number">1.3.2.</span> <span class="toc-text">路由守卫(导航守卫)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%83%8C%E6%99%AF"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">使用背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">小结:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#axios%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E5%9F%BA%E5%87%86%E8%B7%AF%E5%BE%84"><span class="toc-number">1.3.3.</span> <span class="toc-text">axios设置默认基准路径</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%83%8C%E6%99%AF-1"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">使用背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-1"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">使用方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#axios%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-number">1.3.4.</span> <span class="toc-text">axios拦截器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%83%8C%E6%99%AF-2"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">使用背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-2"><span class="toc-number">1.3.4.2.</span> <span class="toc-text">使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-number">1.3.4.2.1.</span> <span class="toc-text">请求拦截器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-number">1.3.4.2.2.</span> <span class="toc-text">响应拦截器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E9%A1%B5Tab-%E6%A0%87%E7%AD%BE%E9%A1%B5%E5%92%8C%E6%96%87%E7%AB%A0%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.5.</span> <span class="toc-text">首页Tab 标签页和文章组件的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%AF%B4%E6%98%8E"><span class="toc-number">1.3.5.1.</span> <span class="toc-text">问题说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93-1"><span class="toc-number">1.3.5.2.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E7%BB%84%E4%BB%B6%E5%AE%9E%E7%8E%B0%E8%AF%84%E8%AE%BA%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.6.</span> <span class="toc-text">递归组件实现评论模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%80%92%E5%BD%92"><span class="toc-number">1.3.6.1.</span> <span class="toc-text">什么是递归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%80%92%E5%BD%92%E7%BB%84%E4%BB%B6"><span class="toc-number">1.3.6.2.</span> <span class="toc-text">什么是递归组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF"><span class="toc-number">1.3.6.3.</span> <span class="toc-text">分析思路</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BFEventBus"><span class="toc-number">1.3.7.</span> <span class="toc-text">事件总线EventBus</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0%EF%BC%9A"><span class="toc-number">1.3.7.1.</span> <span class="toc-text">概述：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%83%8C%E6%99%AF-3"><span class="toc-number">1.3.7.2.</span> <span class="toc-text">使用背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-3"><span class="toc-number">1.3.7.3.</span> <span class="toc-text">使用方法</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/10/16/yxtoutiao/" title="关于英雄头条的一些感悟"><img src="http://pic.netbian.com/uploads/allimg/191121/224644-1574347604d36e.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于英雄头条的一些感悟"/></a><div class="content"><a class="title" href="/2020/10/16/yxtoutiao/" title="关于英雄头条的一些感悟">关于英雄头条的一些感悟</a><time datetime="2020-10-16T05:53:08.000Z" title="发表于 2020-10-16 13:53:08">2020-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/13/debounce-throttle/" title="函数防抖和函数节流"><img src="http://pic.netbian.com/uploads/allimg/200923/225226-16008727469e09.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="函数防抖和函数节流"/></a><div class="content"><a class="title" href="/2020/10/13/debounce-throttle/" title="函数防抖和函数节流">函数防抖和函数节流</a><time datetime="2020-10-13T11:39:37.000Z" title="发表于 2020-10-13 19:39:37">2020-10-13</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By 蔡英雄</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'vyMnEC42zlj9bwi74NhljaHQ-gzGzoHsz',
+      appKey: 'ICjPjlTHE1glFFoPXAMqgM3Y',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div class="aplayer no-destroy" data-id="956985936" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+})</script></div></body></html>
