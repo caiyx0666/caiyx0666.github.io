@@ -1,0 +1,355 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>星月旅行项目总结 | 蔡英雄的个人博客🤭</title><meta name="keywords" content="项目总结,Vue.js,Nuxt.js"><meta name="author" content="蔡英雄,caiyx0666@gmail.com"><meta name="copyright" content="蔡英雄"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="星月旅游项目总结项目背景继上次的英雄头条项目之后，感觉自身能力还是不足，于是就找了这个项目来锻炼自身，当然最终目的还是一致的，毕竟还是要恰饭的🤭 项目原型，这个是通过码云 Page 服务部署上线的，后端使用的是 http，在谷歌浏览器中若是打不开的话，可以尝试更换浏览器试试 技术亮点：  Nuxtjs框架应用，基于Vue的服务器渲染技术（SSR） Nuxtjs结合Element-ui框架使用 N">
+<meta property="og:type" content="article">
+<meta property="og:title" content="星月旅行项目总结">
+<meta property="og:url" content="http://caiyx0666.github.io/2020/10/30/xingyue/index.html">
+<meta property="og:site_name" content="蔡英雄的个人博客🤭">
+<meta property="og:description" content="星月旅游项目总结项目背景继上次的英雄头条项目之后，感觉自身能力还是不足，于是就找了这个项目来锻炼自身，当然最终目的还是一致的，毕竟还是要恰饭的🤭 项目原型，这个是通过码云 Page 服务部署上线的，后端使用的是 http，在谷歌浏览器中若是打不开的话，可以尝试更换浏览器试试 技术亮点：  Nuxtjs框架应用，基于Vue的服务器渲染技术（SSR） Nuxtjs结合Element-ui框架使用 N">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.downk.cc/item/5f9ba5991cd1bbb86b17f99a.jpg">
+<meta property="article:published_time" content="2020-10-30T05:21:36.000Z">
+<meta property="article:modified_time" content="2020-10-30T07:44:00.837Z">
+<meta property="article:author" content="蔡英雄">
+<meta property="article:tag" content="项目总结">
+<meta property="article:tag" content="Vue.js">
+<meta property="article:tag" content="Nuxt.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.downk.cc/item/5f9ba5991cd1bbb86b17f99a.jpg"><link rel="shortcut icon" href="https://pic.downk.cc/item/5f85574e1cd1bbb86ba5685e.jpg"><link rel="canonical" href="http://caiyx0666.github.io/2020/10/30/xingyue/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-10-30 15:44:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://pic.downk.cc/item/5f85574e1cd1bbb86ba5685e.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">3</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">4</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">1</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 時間軸</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音樂</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://pic.downk.cc/item/5f9ba5991cd1bbb86b17f99a.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">蔡英雄的个人博客🤭</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 時間軸</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音樂</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">星月旅行项目总结</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-10-30T05:21:36.000Z" title="发表于 2020-10-30 13:21:36">2020-10-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-10-30T07:44:00.837Z" title="更新于 2020-10-30 15:44:00">2020-10-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="星月旅游项目总结"><a href="#星月旅游项目总结" class="headerlink" title="星月旅游项目总结"></a>星月旅游项目总结</h1><h2 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h2><p>继上次的英雄头条项目之后，感觉自身能力还是不足，于是就找了这个项目来锻炼自身，当然最终目的还是一致的，毕竟还是要恰饭的🤭</p>
+<p><a target="_blank" rel="noopener" href="http://cai-yingxiong.gitee.io/xingyue/">项目原型</a>，这个是通过码云 Page 服务部署上线的，后端使用的是 http，在谷歌浏览器中若是打不开的话，可以尝试更换浏览器试试</p>
+<p>技术亮点：</p>
+<ol>
+<li><code>Nuxtjs</code>框架应用，基于<code>Vue</code>的服务器渲染技术（<code>SSR</code>）</li>
+<li><code>Nuxtjs</code>结合<code>Element-ui</code>框架使用</li>
+<li><code>Nuxtjs</code>(SSR)中使用富文本编辑</li>
+<li>灵活应用本地数据存储实现交互 vuex</li>
+<li>盖楼式跟帖模块，如何应用组件递归</li>
+<li>高德地图实现定位</li>
+<li>前端生成付款二维码</li>
+<li>一个应用，能学习到3种流行的业务类型</li>
+</ol>
+<h2 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h2><ul>
+<li>Nuxtjs</li>
+<li>Vue</li>
+<li>Vue-router</li>
+<li>Element-ui</li>
+<li>Axios</li>
+<li>Token</li>
+<li>Vuex</li>
+<li>高德地图</li>
+</ul>
+<h2 id="nuxt-ssr-简介"><a href="#nuxt-ssr-简介" class="headerlink" title="nuxt/ssr 简介"></a>nuxt/ssr 简介</h2><p>在总结项目之前，我们再来回顾一下我们的 Nuxt框架，还有我们的 SSR 是个什么东西</p>
+<p>SSR 其实就是 Vue 的服务端渲染技术</p>
+<p>Nuxt框架是一个可以用来做 SSR 服务端渲染 开发的框架</p>
+<p>他们之间的关系：SSR是技术基础，Nuxt是封装</p>
+<h3 id="什么是-ssr"><a href="#什么是-ssr" class="headerlink" title="什么是 ssr"></a>什么是 ssr</h3><p>Vue.js 是构建客户端应用程序的框架默认情况下，可以在浏览器中输入 Vue组件，进行生成DOM和操作 DOM。全部的操作都是在客户端运行，在这种情况下，生命周期 mounted 之前，看不到任何东西的，或者如果我们的客户端浏览器，禁用了JS功能的话，就会一片空白</p>
+<p>然而，vue.js也可以将同一个vue组件在<strong>服务端直接渲染</strong>为 HTML 字符串，将它们直接发送到浏览器，最后这些静态标记“激活”为客户端上完全可交互的应用程序，这个时候即使我们的客户端浏览器禁用了JS功能，一样能看到内容，这就是SSR技术</p>
+<p><img src="https://pic.downk.cc/item/5f9baa201cd1bbb86b19c1cb.png"></p>
+<h3 id="为什么-要不要使用服务器端渲染-SSR-？"><a href="#为什么-要不要使用服务器端渲染-SSR-？" class="headerlink" title="为什么/要不要使用服务器端渲染 (SSR)？"></a>为什么/要不要使用服务器端渲染 (SSR)？</h3><p>与传统 SPA (单页应用程序 (Single-Page Application)) 相比，服务器端渲染 (SSR) 的优势主要在于：</p>
+<ul>
+<li>更好的 SEO，由于搜索引擎爬虫抓取工具可以直接查看完全渲染的页面。</li>
+<li>更快的内容到达时间 (time-to-content)，特别是对于缓慢的网络情况或运行缓慢的设备。无需等待所有的 JavaScript 都完成下载并执行，你的用户将会更快速地看到完整渲染的页面。</li>
+</ul>
+<p>使用服务器端渲染 (SSR) 时还需要有一些权衡之处：</p>
+<ul>
+<li>开发条件所限。浏览器特定的代码，只能在某些生命周期钩子函数 (lifecycle hook) 中使用；一些外部扩展库 (external library) 可能需要特殊处理，才能在服务器渲染应用程序中运行。</li>
+<li>涉及构建设置和部署的更多要求。与可以部署在任何静态文件服务器上的完全静态单页面应用程序 (SPA) 不同，服务器渲染应用程序，需要处于 Node.js server 运行环境。</li>
+<li>更多的服务器端负载。在 Node.js 中渲染完整的应用程序，显然会比仅仅提供静态文件的 server 更加大量占用 CPU 资源 (CPU-intensive - CPU 密集)，因此如果你预料在高流量环境 (high traffic) 下使用，请准备相应的服务器负载，并明智地采用缓存策略。</li>
+</ul>
+<p>在对你的应用程序使用服务器端渲染 (SSR) 之前，你应该问的第一个问题是，是否真的需要它。这主要取决于内容到达时间 (time-to-content) 对应用程序的重要程度。例如，如果你正在构建一个内部仪表盘，初始加载时的额外几百毫秒并不重要，这种情况下去使用服务器端渲染 (SSR) 将是一个小题大作之举。然而，内容到达时间 (time-to-content) 要求是绝对关键的指标，在这种情况下，服务器端渲染 (SSR) 可以帮助你实现最佳的初始加载性能。</p>
+<h3 id="项目学习总结"><a href="#项目学习总结" class="headerlink" title="项目学习总结"></a>项目学习总结</h3><h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>本次项目我们为了适应公司常见的开发模式，我们采用的一样是前后端分离的模式，多人协作开发。</p>
+<p>我负责的部分是首页、酒店首页、国内机票的所有页面和订单页面，所以我会根据我负责的部分进行一个总结</p>
+<h4 id="Nuxt框架和-Vue-cli-搭建的脚手架的不同之处"><a href="#Nuxt框架和-Vue-cli-搭建的脚手架的不同之处" class="headerlink" title="Nuxt框架和 Vue-cli 搭建的脚手架的不同之处"></a>Nuxt框架和 Vue-cli 搭建的脚手架的不同之处</h4><p>Nuxt框架相比较于Vue-cli创建的基础脚手架来说，进行了更深层次的封装，很多的一些配置都会有所不同，这里就简单的总结一下，也是以防后面的工作会用到 Nuxt框架而忘记了相关配置😁</p>
+<ol>
+<li><p>在Nuxt框架中是不存在main.js文件来进行全局配置的，我们所有的全局配置都在 <code>plugins</code> 文件夹中进行</p>
+</li>
+<li><p>当我们需要进行设置请求默认基准路径的使用，不需要在 <code>plugins</code> 文件夹中创建文件进行配置，只需要在我们的 <code>nuxt.config.js</code> 配置文件中进行配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">axios: &#123;</span><br><span class="line">    baseURL: <span class="string">&quot;你需要设置的默认基准路径&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>原本的App.vue页面也变成了 layouts 文件夹中的<code>default.vue</code></p>
+</li>
+<li><p>在以前的Vue项目中我们需要自己引入该页面需要用到的组件，在Nuxt我们可以通过在 <code>nuxt.config.js</code> 进行下面的配置，我们的nuxt框架就会帮我们自动引入，当然你如果喜欢自己引入需要的组件的话，也可以不用进行配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">components: <span class="literal">true</span>,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>我们可以在 layouts 文件夹中创建一个 <code>error.vue</code> 文件作为我们的404页面</p>
+</li>
+<li><p>在Nuxt框架中是不存在路由配置的，所以我们在需要进行嵌套路由的时候，我们可以将父路由设置为一个文件夹，创建一个 <code>index.vue</code> 作为我们父路由的页面，而在这个文件夹中创建的其他文件则为这个父路由的子路由</p>
+</li>
+</ol>
+<p>。。。正在努力更新中💪</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:caiyx0666@gmail.com">蔡英雄</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://caiyx0666.github.io/2020/10/30/xingyue/">http://caiyx0666.github.io/2020/10/30/xingyue/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://caiyx0666.github.io" target="_blank">蔡英雄的个人博客🤭</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/">项目总结</a><a class="post-meta__tags" href="/tags/Vue-js/">Vue.js</a><a class="post-meta__tags" href="/tags/Nuxt-js/">Nuxt.js</a></div><div class="post_share"><div class="social-share" data-image="https://pic.downk.cc/item/5f9ba5991cd1bbb86b17f99a.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/10/16/yxtoutiao/"><img class="next-cover" src="https://s1.ax1x.com/2020/10/18/0OLw6S.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">英雄头条项目总结</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/10/16/yxtoutiao/" title="英雄头条项目总结"><img class="cover" src="https://s1.ax1x.com/2020/10/18/0OLw6S.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-16</div><div class="title">英雄头条项目总结</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://pic.downk.cc/item/5f85574e1cd1bbb86ba5685e.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">蔡英雄</div><div class="author-info__description">一名爱学习的web前端工程师</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length_num">3</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length_num">4</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length_num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/caiyx0666" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/caiyx0666@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">希望进来的你能学到东西😁</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%98%9F%E6%9C%88%E6%97%85%E6%B8%B8%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">星月旅游项目总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">项目背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="toc-number">1.2.</span> <span class="toc-text">技术栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nuxt-ssr-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.3.</span> <span class="toc-text">nuxt&#x2F;ssr 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-ssr"><span class="toc-number">1.3.1.</span> <span class="toc-text">什么是 ssr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-%E8%A6%81%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E6%B8%B2%E6%9F%93-SSR-%EF%BC%9F"><span class="toc-number">1.3.2.</span> <span class="toc-text">为什么&#x2F;要不要使用服务器端渲染 (SSR)？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.3.</span> <span class="toc-text">项目学习总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Nuxt%E6%A1%86%E6%9E%B6%E5%92%8C-Vue-cli-%E6%90%AD%E5%BB%BA%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6%E7%9A%84%E4%B8%8D%E5%90%8C%E4%B9%8B%E5%A4%84"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">Nuxt框架和 Vue-cli 搭建的脚手架的不同之处</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/10/30/xingyue/" title="星月旅行项目总结"><img src="https://pic.downk.cc/item/5f9ba5991cd1bbb86b17f99a.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="星月旅行项目总结"/></a><div class="content"><a class="title" href="/2020/10/30/xingyue/" title="星月旅行项目总结">星月旅行项目总结</a><time datetime="2020-10-30T05:21:36.000Z" title="发表于 2020-10-30 13:21:36">2020-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/16/yxtoutiao/" title="英雄头条项目总结"><img src="https://s1.ax1x.com/2020/10/18/0OLw6S.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="英雄头条项目总结"/></a><div class="content"><a class="title" href="/2020/10/16/yxtoutiao/" title="英雄头条项目总结">英雄头条项目总结</a><time datetime="2020-10-16T05:53:08.000Z" title="发表于 2020-10-16 13:53:08">2020-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/13/debounce-throttle/" title="函数防抖和函数节流"><img src="https://s1.ax1x.com/2020/10/18/0OL6kn.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="函数防抖和函数节流"/></a><div class="content"><a class="title" href="/2020/10/13/debounce-throttle/" title="函数防抖和函数节流">函数防抖和函数节流</a><time datetime="2020-10-13T11:39:37.000Z" title="发表于 2020-10-13 19:39:37">2020-10-13</time></div></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://pic.downk.cc/item/5f9ba5991cd1bbb86b17f99a.jpg)"><div id="footer-wrap"><div class="copyright">&copy;2020 By 蔡英雄</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'vyMnEC42zlj9bwi74NhljaHQ-gzGzoHsz',
+      appKey: 'ICjPjlTHE1glFFoPXAMqgM3Y',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div class="aplayer no-destroy" data-id="956985936" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/e9e26bec.js","daovoice")
+</script><script>var isChatBtn = true
+daovoice('init', {
+  app_id: 'e9e26bec',},{
+  launcher: { 
+     disableLauncherIcon: isChatBtn // 悬浮 ICON 是否显示
+  },
+});
+daovoice('update');
+
+if (isChatBtn) {
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      daovoice('show')
+    });
+  }
+  chatBtnFn()
+} else {
+  if (true) {
+    function chatBtnHide () {
+      daovoice('update', {},{
+        launcher: { 
+        disableLauncherIcon: true // 悬浮 ICON 是否显示
+        },
+      });
+    }
+    function chatBtnShow () {
+      daovoice('update', {},{
+        launcher: { 
+        disableLauncherIcon: false // 悬浮 ICON 是否显示
+        },
+      });
+    }
+  }
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+})</script></div></body></html>
