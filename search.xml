@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>原型和原型链</title>
+      <link href="2020/11/14/javascript02/"/>
+      <url>2020/11/14/javascript02/</url>
+      
+        <content type="html"><![CDATA[<h2 id="理解原型设计模式以及JavaScript中的原型规则"><a href="#理解原型设计模式以及JavaScript中的原型规则" class="headerlink" title="理解原型设计模式以及JavaScript中的原型规则"></a>理解原型设计模式以及JavaScript中的原型规则</h2><h2 id="instanceof的底层实现原理，手动实现一个instanceof"><a href="#instanceof的底层实现原理，手动实现一个instanceof" class="headerlink" title="instanceof的底层实现原理，手动实现一个instanceof"></a>instanceof的底层实现原理，手动实现一个instanceof</h2><h2 id="实现继承的几种方式以及他们的优缺点"><a href="#实现继承的几种方式以及他们的优缺点" class="headerlink" title="实现继承的几种方式以及他们的优缺点"></a>实现继承的几种方式以及他们的优缺点</h2><h2 id="至少说出一种开源项目-如Node-中应用原型继承的案例"><a href="#至少说出一种开源项目-如Node-中应用原型继承的案例" class="headerlink" title="至少说出一种开源项目(如Node)中应用原型继承的案例"></a>至少说出一种开源项目(如Node)中应用原型继承的案例</h2><h2 id="可以描述new一个对象的详细过程，手动实现一个new操作符"><a href="#可以描述new一个对象的详细过程，手动实现一个new操作符" class="headerlink" title="可以描述new一个对象的详细过程，手动实现一个new操作符"></a>可以描述new一个对象的详细过程，手动实现一个new操作符</h2><h2 id="理解es6-class构造以及继承的底层实现原理"><a href="#理解es6-class构造以及继承的底层实现原理" class="headerlink" title="理解es6 class构造以及继承的底层实现原理"></a>理解es6 class构造以及继承的底层实现原理</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端学习自检清单 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> javascript基础 </tag>
+            
+            <tag> 笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>变量和类型</title>
       <link href="2020/11/13/javascript01/"/>
       <url>2020/11/13/javascript01/</url>
