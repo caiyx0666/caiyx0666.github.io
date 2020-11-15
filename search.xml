@@ -4,11 +4,36 @@
   
     
     <entry>
+      <title>大厂常见面试题（01）</title>
+      <link href="2020/11/15/mianshi01/"/>
+      <url>2020/11/15/mianshi01/</url>
+      
+        <content type="html"><![CDATA[<h2 id="写-React-Vue-项目时为什么要在列表组件中写-key，-其作用是什么？"><a href="#写-React-Vue-项目时为什么要在列表组件中写-key，-其作用是什么？" class="headerlink" title="写 React / Vue 项目时为什么要在列表组件中写 key， 其作用是什么？"></a>写 React / Vue 项目时为什么要在列表组件中写 key， 其作用是什么？</h2><p>在我们平时使用的时候，如果我们只是使用简单模板，基于这个前提，可以高效的复用节点，diff速度来看也是不带key更加快速的，因为带key在删除节点上有耗时。这就是Vue文档所说的默认模式。但是这个并不是key作用，而是没有key的情况下可以对节点就地复用，提高性能。</p><p>这种模式会带来一些隐藏的副作用，比如可能不会产生过渡效果，或者在某些节点有绑定数据（表单）状态，会出现状态错位。Vue文档也说明了</p><blockquote><p>这个默认的模式是高效的，但是只适用于不依赖子组件状态或临时DOM状态（例如：表单输入值）的列表渲染输出</p></blockquote><h3 id="所以我们的key的作用是什么呢"><a href="#所以我们的key的作用是什么呢" class="headerlink" title="所以我们的key的作用是什么呢"></a>所以我们的key的作用是什么呢</h3><blockquote><p>key是给每一个vnode的唯一id，可以依赖key，更准确，更快的拿到oldVnode中对应的vnode节点</p></blockquote><ol><li><p>更准确</p><p>因为带key就不是就地复用，在sameNode函数 a.key === b.key 对比中可以避免就地复用的情况。所以会更准确</p></li><li><p>更快</p><p>利用key的唯一性生成的map对象来获取对应的节点，比遍历方式更快</p></li></ol><h2 id="‘1’-‘2’-‘3’-map-parseInt-what-amp-why"><a href="#‘1’-‘2’-‘3’-map-parseInt-what-amp-why" class="headerlink" title="[‘1’, ‘2’, ‘3’].map(parseInt) what &amp; why ?"></a>[‘1’, ‘2’, ‘3’].map(parseInt) what &amp; why ?</h2><p>在做这道题之前，我们首先要先理解 <code>map</code>和<code>parseInt</code> 方法的使用。</p><h3 id="map："><a href="#map：" class="headerlink" title="map："></a>map：</h3><p>这个方法是对数组进行映射，该方法按照原始数组元素依次处理元素，返回处理之后的数组，数组中的元素为原始数组元素调用函数处理后的值</p><p>该方法可以接收一个函数作为参数，该函数带有三个参数，分别是 当前元素的值（必选）、当前元素的索引（可选）、当前元素属于的数组对象（可选）</p><h3 id="parseInt："><a href="#parseInt：" class="headerlink" title="parseInt："></a>parseInt：</h3><p>该方法可以解析一个字符串，并返回一个整数</p><p>该方法可以接收两个参数，第一个为要进行解析的字符串对象（必选）、第二个参数表示要解析的数字的基数，该值介于 2 ~ 36 之间。</p><p>如果省略该参数或其值为 0，则数字将以 10 为基础来解析。如果它以 “0x” 或 “0X” 开头，将以 16 为基数。</p><p>如果该参数小于 2 或者大于 36，则 parseInt() 将返回 NaN。</p><p>当我们了解了这两个方法之后，我们就可以来解这道题了。</p><p>[‘1’, ‘2’, ‘3’].map(parseInt) 其实就是</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>].map(<span class="function"><span class="keyword">function</span>(<span class="params">item,index,array</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parseInt</span>(item,index,array)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>在具体到其中的循环过程就是这样的</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">&#x27;1&#x27;</span>,<span class="number">0</span>,[<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>])  <span class="comment">// parseInt方法只能接收两个参数，所以第三个参数其实是无效的</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">&#x27;2&#x27;</span>,<span class="number">1</span>,[<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>])</span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">&#x27;3&#x27;</span>,<span class="number">2</span>,[<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>])</span><br></pre></td></tr></table></figure><p>所以我们的输出结果为</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="literal">NaN</span>,<span class="literal">NaN</span>]</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 面试题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>原型和原型链</title>
       <link href="2020/11/14/javascript02/"/>
       <url>2020/11/14/javascript02/</url>
       
-        <content type="html"><![CDATA[<h2 id="理解原型设计模式以及JavaScript中的原型规则"><a href="#理解原型设计模式以及JavaScript中的原型规则" class="headerlink" title="理解原型设计模式以及JavaScript中的原型规则"></a>理解原型设计模式以及JavaScript中的原型规则</h2><h2 id="instanceof的底层实现原理，手动实现一个instanceof"><a href="#instanceof的底层实现原理，手动实现一个instanceof" class="headerlink" title="instanceof的底层实现原理，手动实现一个instanceof"></a>instanceof的底层实现原理，手动实现一个instanceof</h2><h2 id="实现继承的几种方式以及他们的优缺点"><a href="#实现继承的几种方式以及他们的优缺点" class="headerlink" title="实现继承的几种方式以及他们的优缺点"></a>实现继承的几种方式以及他们的优缺点</h2><h2 id="至少说出一种开源项目-如Node-中应用原型继承的案例"><a href="#至少说出一种开源项目-如Node-中应用原型继承的案例" class="headerlink" title="至少说出一种开源项目(如Node)中应用原型继承的案例"></a>至少说出一种开源项目(如Node)中应用原型继承的案例</h2><h2 id="可以描述new一个对象的详细过程，手动实现一个new操作符"><a href="#可以描述new一个对象的详细过程，手动实现一个new操作符" class="headerlink" title="可以描述new一个对象的详细过程，手动实现一个new操作符"></a>可以描述new一个对象的详细过程，手动实现一个new操作符</h2><h2 id="理解es6-class构造以及继承的底层实现原理"><a href="#理解es6-class构造以及继承的底层实现原理" class="headerlink" title="理解es6 class构造以及继承的底层实现原理"></a>理解es6 class构造以及继承的底层实现原理</h2>]]></content>
+        <content type="html"><![CDATA[<h2 id="理解原型设计模式以及JavaScript中的原型规则"><a href="#理解原型设计模式以及JavaScript中的原型规则" class="headerlink" title="理解原型设计模式以及JavaScript中的原型规则"></a>理解原型设计模式以及JavaScript中的原型规则</h2><h2 id="instanceof的底层实现原理，手动实现一个instanceof"><a href="#instanceof的底层实现原理，手动实现一个instanceof" class="headerlink" title="instanceof的底层实现原理，手动实现一个instanceof"></a>instanceof的底层实现原理，手动实现一个instanceof</h2><h2 id="实现继承的几种方式以及他们的优缺点"><a href="#实现继承的几种方式以及他们的优缺点" class="headerlink" title="实现继承的几种方式以及他们的优缺点"></a>实现继承的几种方式以及他们的优缺点</h2><h2 id="至少说出一种开源项目-如Node-中应用原型继承的案例"><a href="#至少说出一种开源项目-如Node-中应用原型继承的案例" class="headerlink" title="至少说出一种开源项目(如Node)中应用原型继承的案例"></a>至少说出一种开源项目(如Node)中应用原型继承的案例</h2><h2 id="可以描述new一个对象的详细过程，手动实现一个new操作符"><a href="#可以描述new一个对象的详细过程，手动实现一个new操作符" class="headerlink" title="可以描述new一个对象的详细过程，手动实现一个new操作符"></a>可以描述new一个对象的详细过程，手动实现一个new操作符</h2><h2 id="理解es6-class构造以及继承的底层实现原理"><a href="#理解es6-class构造以及继承的底层实现原理" class="headerlink" title="理解es6 class构造以及继承的底层实现原理"></a>理解es6 class构造以及继承的底层实现原理</h2><p>正在努力中…..</p>]]></content>
       
       
       <categories>
@@ -58,7 +83,7 @@
     
     
     <entry>
-      <title>函数防抖和函数节流</title>
+      <title>关于函数防抖和函数节流的那点事</title>
       <link href="2020/10/13/debounce-throttle/"/>
       <url>2020/10/13/debounce-throttle/</url>
       
@@ -67,7 +92,7 @@
       
       <categories>
           
-          <category> 前端 </category>
+          <category> 性能优化 </category>
           
       </categories>
       
