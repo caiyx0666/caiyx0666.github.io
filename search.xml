@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>关于HTTP的那些事</title>
+      <link href="http/"/>
+      <url>http/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一次完整的Http请求过程"><a href="#一次完整的Http请求过程" class="headerlink" title="一次完整的Http请求过程"></a>一次完整的Http请求过程</h2><p>其实这句话的意思可以理解为</p><blockquote><p>当我们在web浏览器地址栏中输入一个域名（<code>www.baidu.com</code>），具体会发生什么？</p></blockquote><p>大概过程就是：</p><ol><li>对 <code>www.baidu.com</code> 这个网址进行NDS域名解析，得到对应的IP地址（例如：192.168.1.0）</li><li>根据这个IP，找到对应的服务器，发起TCP的三次握手</li><li>建立TCP连接后发起HTTP请求</li><li>服务器响应HTTP请求，浏览器得到html代码</li><li>浏览器解析html代码，并请求html中的资源（如js、css、图片等）（先得到html代码，才能去找这些资源）</li><li>浏览器对页面进行渲染呈现给用户</li><li>服务器关闭断开TCP连接</li></ol><h3 id="具体实现过程："><a href="#具体实现过程：" class="headerlink" title="具体实现过程："></a>具体实现过程：</h3><ol><li><p>DNS怎么找到域名的？</p><blockquote><p>DNS域名解析采用的是递归查询的方式，过程是先去找DNS缓存，缓存找不到就去找根域名服务器，然后就会一直往下一级去找，这样递归查找之后，找到了，给我们的web浏览器</p></blockquote></li></ol><ol start="2"><li><p>为什么HTTP协议要基于TCP来实现</p><blockquote><p>TCP是一个端到端的可靠的面相连接的协议，HTTP基于传输层TCP协议不用担心数据传输的各种问题（当发生错误时，会重新传送）</p></blockquote></li></ol><ol start="3"><li><p>浏览器是如何对页面进行渲染的？</p><blockquote><ol><li>处理html标记并构建DOM树</li><li>处理css标记并构建CSSOM树</li><li>将DOM与CSSOM合并成一个渲染树</li><li>根据渲染树来布局，以计算每个节点的几何信息</li><li>将各个节点绘制到屏幕上</li></ol></blockquote></li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 网络协议 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>前端跨域问题详解</title>
       <link href="kuayu/"/>
       <url>kuayu/</url>
