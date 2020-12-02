@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>call-apply-bind | 蔡英雄的个人博客🤭</title><meta name="keywords" content="javascript"><meta name="author" content="蔡英雄,caiyx0666@gmail.com"><meta name="copyright" content="蔡英雄"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="实现call()、apply()、bind()call、apply、bind的实现，主要是修改 this 指向，在实现的过程中要搞清楚 this 的指向 首先来看一下以下的场景 123456function show()&amp;#123;    console.log(this.name)&amp;#125;person &#x3D; &amp;#123;    name: &amp;#x27;caiyx&amp;#x27;&amp;#125;  思考">
+<meta property="og:type" content="article">
+<meta property="og:title" content="call-apply-bind">
+<meta property="og:url" content="http://caiyx0666.github.io/call-apply-bind/index.html">
+<meta property="og:site_name" content="蔡英雄的个人博客🤭">
+<meta property="og:description" content="实现call()、apply()、bind()call、apply、bind的实现，主要是修改 this 指向，在实现的过程中要搞清楚 this 的指向 首先来看一下以下的场景 123456function show()&amp;#123;    console.log(this.name)&amp;#125;person &#x3D; &amp;#123;    name: &amp;#x27;caiyx&amp;#x27;&amp;#125;  思考">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images.pexels.com/photos/5589173/pexels-photo-5589173.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+<meta property="article:published_time" content="2020-12-02T03:55:19.000Z">
+<meta property="article:modified_time" content="2020-12-02T13:37:54.338Z">
+<meta property="article:author" content="蔡英雄">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.pexels.com/photos/5589173/pexels-photo-5589173.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"><link rel="shortcut icon" href="https://pic.downk.cc/item/5f85574e1cd1bbb86ba5685e.jpg"><link rel="canonical" href="http://caiyx0666.github.io/call-apply-bind/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-12-02 21:37:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://pic.downk.cc/item/5f85574e1cd1bbb86ba5685e.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">14</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">7</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 時間軸</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音樂</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://images.pexels.com/photos/5589173/pexels-photo-5589173.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">蔡英雄的个人博客🤭</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 時間軸</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音樂</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">call-apply-bind</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon fas fa-history"></i><span class="post-meta-label">更新于</span><time datetime="2020-12-02T13:37:54.338Z" title="undefined 2020-12-02 21:37:54">2020-12-02</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="实现call-、apply-、bind"><a href="#实现call-、apply-、bind" class="headerlink" title="实现call()、apply()、bind()"></a>实现call()、apply()、bind()</h1><p><code>call</code>、<code>apply</code>、<code>bind</code>的实现，主要是修改 <code>this</code> 指向，在实现的过程中要搞清楚 <code>this</code> 的指向</p>
+<p>首先来看一下以下的场景</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line">person = &#123;</span><br><span class="line">    name: <span class="string">&#x27;caiyx&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>思考问题：</strong></p>
+<p>如果我们不使用 <code>call</code>、<code>apply</code>、<code>bind</code>，我们要怎么样让 <code>show</code> 方法中的 <code>this</code>指向<code>person</code> 呢？</p>
+<p>我们可以像下面这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">person = &#123;</span><br><span class="line">    name: <span class="string">&#x27;caiyx&#x27;</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="built_in">console</span>.log(<span class="built_in">this</span>.name)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的做法其实就是将 <code>this</code> 的默认绑定改为隐式绑定</p>
+<p>我们手写实现的<code>call</code>、<code>apply</code>、<code>bind</code> 其实也是这个思路 </p>
+<h2 id="call-的实现"><a href="#call-的实现" class="headerlink" title="call()的实现"></a>call()的实现</h2><p>我们还是基于上面的方式，来验证实现的 <code>call</code> 方法是否有效</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span> (<span class="params">...args</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name)</span><br><span class="line">    <span class="built_in">console</span>.log(...args)</span><br><span class="line">&#125;</span><br><span class="line">person = &#123;</span><br><span class="line">    name: <span class="string">&#x27;caiyx&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.mycall(that,...args)&#123;</span><br><span class="line">    that.fn = <span class="built_in">this</span></span><br><span class="line">    <span class="keyword">const</span> result = that.fn(...args)</span><br><span class="line">    <span class="keyword">delete</span> that.fn</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line">show.mycall(person,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>) <span class="comment">// caiyx , 1 2 3</span></span><br></pre></td></tr></table></figure>
+
+<p>可以！，说明按照上面的方法来实现是可以的，但是如果传入的 <code>that</code> 形参是 <code>null</code>呢？所以这里我们还要加一个判断</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.mycall = <span class="function"><span class="keyword">function</span>(<span class="params">that,...args</span>)</span>&#123;</span><br><span class="line">    that ? that : <span class="built_in">window</span></span><br><span class="line">    that.fn = <span class="built_in">this</span></span><br><span class="line">    <span class="keyword">const</span> result = that.fn(...args)</span><br><span class="line">    <span class="keyword">delete</span> that.fn</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样，我们的 <code>call</code> 方法才是一个成熟的方法</p>
+<h2 id="apply-的实现"><a href="#apply-的实现" class="headerlink" title="apply()的实现"></a>apply()的实现</h2><p>apply跟call的用法都差不多，只是接受的参数是一个数组。</p>
+<p>那我们先按照上面的思路再来实现一下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span> (<span class="params">...args</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name)</span><br><span class="line">    <span class="built_in">console</span>.log(...args)</span><br><span class="line">&#125;</span><br><span class="line">person = &#123;</span><br><span class="line">    name: <span class="string">&#x27;caiyx&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.myapply = <span class="function"><span class="keyword">function</span>(<span class="params">that,args=[]</span>)</span>&#123;</span><br><span class="line">    that ? that : <span class="built_in">window</span></span><br><span class="line">    that.fn = <span class="built_in">this</span></span><br><span class="line">    <span class="keyword">const</span> result = that.fn(...args)</span><br><span class="line">    <span class="keyword">delete</span> that.fn</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是上面的代码没有对参数进行限制，但使用者传递的不是数组的时候我们应该给予提示，所以我们最终的代码是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.myapply = <span class="function"><span class="keyword">function</span>(<span class="params">that,args=[]</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="built_in">Array</span>.isArray(args))&#123;</span><br><span class="line">        <span class="keyword">throw</span> (<span class="string">&#x27;The argument you need to pass should be an array&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    that ? that : <span class="built_in">window</span></span><br><span class="line">    that.fn = <span class="built_in">this</span></span><br><span class="line">    <span class="keyword">const</span> result = that.fn(...args)</span><br><span class="line">    <span class="keyword">delete</span> that.fn</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样，我们的 <code>apply</code> 方法也实现了😁</p>
+<h2 id="bind-的实现"><a href="#bind-的实现" class="headerlink" title="bind()的实现"></a>bind()的实现</h2><p>首先我们要知道，<code>bind</code> 方法传参的方法跟我们的 <code>call</code> 是一样的，不同的是 <code>bind</code> 方法不会直接调用函数，而是返回一个函数，所以我们可以大胆的想象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.mybind = <span class="function"><span class="keyword">function</span>(<span class="params">that,...args</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.apply(that,...args)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样就实现了一个简易版的 <code>bind</code> 方法，但是我们原生的 <code>bind</code> 方法具有柯里化特征</p>
+<p>那什么是柯里化呢？</p>
+<p>大概含义就是给函数分布传递参数，每次传递部分参数，并返回一个更具体的函数接受剩下的参数，这中间可嵌套多层这样的接收部分参数的函数，直至返回最后结果。</p>
+<p>emmmm，看不懂的话，大概就是下面的代码执行的结果都是一样的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">show.bind(person, <span class="number">5</span>, <span class="number">6</span>)(<span class="number">2</span>, <span class="number">1</span>);  <span class="comment">// caiyx 5 6 2 1</span></span><br><span class="line">show.bind(person, <span class="number">5</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">1</span>)(); <span class="comment">// caiyx 5 6 2 1</span></span><br><span class="line">show.bind(person)(<span class="number">5</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">1</span>); <span class="comment">// caiyx 5 6 2 1</span></span><br></pre></td></tr></table></figure>
+
+<p>所以我们的代码需要改为</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.mybind = <span class="function"><span class="keyword">function</span>(<span class="params">that,...args</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">...args2</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.apply(that,[...args,...args2])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样就满足了 <code>bind</code> 柯里化特征的要求。但是原生的 <code>bind</code> 方法返回的函数还可以通过 <code>new</code> 关键字去实例化对象。</p>
+<p>所以我们还需要判断返回的函数有没有用 <code>new</code> 关键字来实例化对象，如果有的话，返回的函数的<code>this</code> 指向实例化后的对象，如果没有的话就用原来的逻辑</p>
+<p>这里我们给上面的 <code>show</code> 方法原型上增加一个属性，并用 <code>new</code> 关键字来实例化一个对象</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">show.prototype.info = <span class="string">&#x27;这是show方法&#x27;</span></span><br><span class="line"><span class="built_in">Function</span>.prototype.mybind = <span class="function"><span class="keyword">function</span>(<span class="params">that,...args</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">...args2</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.apply(that,[...args,...args2])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> newBind = show.mybind(person,<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"><span class="keyword">const</span> newbind = <span class="keyword">new</span> newBind(<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">console</span>.log(newBind.info)</span><br><span class="line"><span class="comment">// Uncaught TypeError: newBind is not a constructor</span></span><br></pre></td></tr></table></figure>
+
+<p>接下来我们使用 <code>instanceof</code> 来判断创建的对象是不是用 <code>new</code> 关键字来实例化的对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.mybind = <span class="function"><span class="keyword">function</span>(<span class="params">that,...args</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 用 That 来保存mybind的调用者</span></span><br><span class="line">    <span class="keyword">const</span> That = <span class="built_in">this</span></span><br><span class="line">    <span class="keyword">const</span> newFn = <span class="function"><span class="keyword">function</span>(<span class="params">...args1</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> args2 = [...args1,...args]</span><br><span class="line">        <span class="comment">// 如果使用new关键字，这里的this指向的是newFn对象</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span> <span class="keyword">instanceof</span> newFn)&#123;</span><br><span class="line">            <span class="comment">// 将mybind调用者的this指向改为newFn对象</span></span><br><span class="line">            That.apply(<span class="built_in">this</span>,args)</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            That.apply(that,args)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> newFn</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>到这里我们发现仍然访问不到 <code>newbind.info</code>，这是因为还没有将 <code>newFn</code> 和 <code>mybind</code> 的调用者（<code>show</code>函数）建立联系，所以我们的代码修改为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.mybind = <span class="function"><span class="keyword">function</span>(<span class="params">that,...args</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 用 That 来保存mybind的调用者</span></span><br><span class="line">    <span class="keyword">const</span> That = <span class="built_in">this</span></span><br><span class="line">    <span class="keyword">const</span> newFn = <span class="function"><span class="keyword">function</span>(<span class="params">...args1</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> args2 = [...args1,...args]</span><br><span class="line">        <span class="comment">// 如果使用new关键字，这里的this指向的是newFn对象</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span> <span class="keyword">instanceof</span> newFn)&#123;</span><br><span class="line">            <span class="comment">// 将mybind调用者的this指向改为newFn对象</span></span><br><span class="line">            That.apply(<span class="built_in">this</span>,args2)</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            That.apply(that,args2)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    newFn.prototype = That.prototype</span><br><span class="line">    <span class="keyword">return</span> newFn</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样，<code>bind</code> 方法的基本功能已经基本实现，但是代码中我们是直接修改了原型对象，这样是不符合规范的，我们可以通过原型继承来进行修改我们的代码，所以最终 <code>bind</code> 的代码为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.mybind = <span class="function"><span class="keyword">function</span>(<span class="params">that,...args</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 用 That 来保存mybind的调用者</span></span><br><span class="line">    <span class="keyword">const</span> That = <span class="built_in">this</span></span><br><span class="line">    <span class="keyword">let</span> fnc = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">const</span> newFn = <span class="function"><span class="keyword">function</span>(<span class="params">...args1</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> args2 = [...args1,...args]</span><br><span class="line">        <span class="comment">// 如果使用new关键字，这里的this指向的是newFn对象</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span> <span class="keyword">instanceof</span> newFn)&#123;</span><br><span class="line">            <span class="comment">// 将mybind调用者的this指向改为newFn对象</span></span><br><span class="line">            That.apply(<span class="built_in">this</span>,args2)</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            That.apply(that,args2)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    fnc.prototype = That.prototype</span><br><span class="line">    newFn.prototype = <span class="keyword">new</span> fnc</span><br><span class="line">    <span class="keyword">return</span> newFn</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样，我们就实现了 <code>bind</code> 方法了😵</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:caiyx0666@gmail.com">蔡英雄</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://caiyx0666.github.io/call-apply-bind/">http://caiyx0666.github.io/call-apply-bind/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://caiyx0666.github.io" target="_blank">蔡英雄的个人博客🤭</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/javascript/">javascript</a></div><div class="post_share"><div class="social-share" data-image="https://images.pexels.com/photos/5589173/pexels-photo-5589173.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/shouxie/"><img class="next-cover" src="https://images.pexels.com/photos/5583617/pexels-photo-5583617.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">前端需要掌握的手写代码能力</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/debounce-throttle/" title="关于函数防抖和函数节流的那点事"><img class="cover" src="https://s1.ax1x.com/2020/10/18/0OL6kn.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-13</div><div class="title">关于函数防抖和函数节流的那点事</div></div></a></div><div><a href="/javascript01/" title="变量和类型"><img class="cover" src="http://static.veer.com/veer/static/resources/FourPack/2020-11-02/c4abe18e3c914b61a2462c4534a1cf78.gif" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-13</div><div class="title">变量和类型</div></div></a></div><div><a href="/kuayu/" title="前端跨域问题详解"><img class="cover" src="https://images.pexels.com/photos/5834943/pexels-photo-5834943.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-22</div><div class="title">前端跨域问题详解</div></div></a></div><div><a href="/shouxie/" title="前端需要掌握的手写代码能力"><img class="cover" src="https://images.pexels.com/photos/5583617/pexels-photo-5583617.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-29</div><div class="title">前端需要掌握的手写代码能力</div></div></a></div><div><a href="/javascript02/" title="原型和原型链"><img class="cover" src="//d301.paixin.com/thumbs/1016676/102180786/staff_1024.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-14</div><div class="title">原型和原型链</div></div></a></div><div><a href="/set-map-weakxet-weakmap/" title="Set、Map、WeakSet 和 WeakMap 的区别"><img class="cover" src="https://images.pexels.com/photos/5797997/pexels-photo-5797997.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-16</div><div class="title">Set、Map、WeakSet 和 WeakMap 的区别</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://pic.downk.cc/item/5f85574e1cd1bbb86ba5685e.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">蔡英雄</div><div class="author-info__description">一名爱学习的web前端工程师</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length_num">14</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length_num">7</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length_num">3</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/caiyx0666" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/caiyx0666@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">希望进来的你能学到东西😁</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0call-%E3%80%81apply-%E3%80%81bind"><span class="toc-number">1.</span> <span class="toc-text">实现call()、apply()、bind()</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#call-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.1.</span> <span class="toc-text">call()的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apply-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.2.</span> <span class="toc-text">apply()的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bind-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.3.</span> <span class="toc-text">bind()的实现</span></a></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/call-apply-bind/" title="call-apply-bind"><img src="https://images.pexels.com/photos/5589173/pexels-photo-5589173.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="call-apply-bind"/></a><div class="content"><a class="title" href="/call-apply-bind/" title="call-apply-bind">call-apply-bind</a><time datetime="2020-12-02T03:55:19.000Z" title="发表于 2020-12-02 11:55:19">2020-12-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/shouxie/" title="前端需要掌握的手写代码能力"><img src="https://images.pexels.com/photos/5583617/pexels-photo-5583617.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端需要掌握的手写代码能力"/></a><div class="content"><a class="title" href="/shouxie/" title="前端需要掌握的手写代码能力">前端需要掌握的手写代码能力</a><time datetime="2020-11-29T02:41:06.000Z" title="发表于 2020-11-29 10:41:06">2020-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/tcp/" title="TCP三次握手四次挥手"><img src="https://images.pexels.com/photos/2058130/pexels-photo-2058130.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TCP三次握手四次挥手"/></a><div class="content"><a class="title" href="/tcp/" title="TCP三次握手四次挥手">TCP三次握手四次挥手</a><time datetime="2020-11-27T14:48:03.000Z" title="发表于 2020-11-27 22:48:03">2020-11-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/http/" title="关于HTTP的那些事"><img src="https://images.pexels.com/photos/326501/pexels-photo-326501.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于HTTP的那些事"/></a><div class="content"><a class="title" href="/http/" title="关于HTTP的那些事">关于HTTP的那些事</a><time datetime="2020-11-27T12:10:49.000Z" title="发表于 2020-11-27 20:10:49">2020-11-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/kuayu/" title="前端跨域问题详解"><img src="https://images.pexels.com/photos/5834943/pexels-photo-5834943.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端跨域问题详解"/></a><div class="content"><a class="title" href="/kuayu/" title="前端跨域问题详解">前端跨域问题详解</a><time datetime="2020-11-22T14:10:15.000Z" title="发表于 2020-11-22 22:10:15">2020-11-22</time></div></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://images.pexels.com/photos/5589173/pexels-photo-5589173.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940)"><div id="footer-wrap"><div class="copyright">&copy;2020 By 蔡英雄</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'vyMnEC42zlj9bwi74NhljaHQ-gzGzoHsz',
+      appKey: 'ICjPjlTHE1glFFoPXAMqgM3Y',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div class="aplayer no-destroy" data-id="956985936" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/e9e26bec.js","daovoice")
+</script><script>var isChatBtn = true
+daovoice('init', {
+  app_id: 'e9e26bec',},{
+  launcher: { 
+     disableLauncherIcon: isChatBtn // 悬浮 ICON 是否显示
+  },
+});
+daovoice('update');
+
+if (isChatBtn) {
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      daovoice('show')
+    });
+  }
+  chatBtnFn()
+} else {
+  if (true) {
+    function chatBtnHide () {
+      daovoice('update', {},{
+        launcher: { 
+        disableLauncherIcon: true // 悬浮 ICON 是否显示
+        },
+      });
+    }
+    function chatBtnShow () {
+      daovoice('update', {},{
+        launcher: { 
+        disableLauncherIcon: false // 悬浮 ICON 是否显示
+        },
+      });
+    }
+  }
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+})</script></div></body></html>
