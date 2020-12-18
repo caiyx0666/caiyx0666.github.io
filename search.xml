@@ -4,46 +4,6 @@
   
     
     <entry>
-      <title>整理H5、CSS3新增特性</title>
-      <link href="H5andC3/"/>
-      <url>H5andC3/</url>
-      
-        <content type="html"><![CDATA[<h1 id="整理H5、CSS3新增特性"><a href="#整理H5、CSS3新增特性" class="headerlink" title="整理H5、CSS3新增特性"></a>整理H5、CSS3新增特性</h1><h2 id="H5"><a href="#H5" class="headerlink" title="H5"></a>H5</h2><h3 id="新增语义化标签"><a href="#新增语义化标签" class="headerlink" title="新增语义化标签"></a>新增语义化标签</h3><ul><li><code>&lt;header&gt;</code> 标记定义一个页面或区域的头部</li><li><code>&lt;nav&gt;</code> 标记定义导航链接</li><li><code>&lt;section&gt;</code> 标记定义一个区域</li><li><code>&lt;aside&gt;</code> 标记定义页面页面内容部分的侧边栏</li><li><code>&lt;article&gt;</code> 标记定义一篇文章</li><li><code>&lt;hgroup&gt;</code> 标记定义文件中的一个区块的相关信息</li><li><code>&lt;figure&gt;</code> 标记定义一组媒体内容</li><li><code>&lt;figcaption&gt;</code> 标记定义 figure 元素的标题</li><li><code>&lt;dialog&gt;</code> 标记定义一个对话框（会话框）类似微信</li><li><code>&lt;footer&gt;</code> 标记定义一个页面或一个区域的底部</li></ul><p>借图一用🙈</p><p><img src="https://user-gold-cdn.xitu.io/2019/8/20/16caad4b1886450e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"></p><h3 id="什么是HTML语义化？"><a href="#什么是HTML语义化？" class="headerlink" title="什么是HTML语义化？"></a>什么是HTML语义化？</h3><p>根据内容的结构化（内容语义化），选择合适的标签（代码语义化）便于开发者阅读和写出更优雅的代码的同时让浏览器的爬虫和机器很好的解析。</p><h3 id="为什么要语义化？"><a href="#为什么要语义化？" class="headerlink" title="为什么要语义化？"></a>为什么要语义化？</h3><ul><li>为了在没有CSS的情况下；页面也能呈现很好的内容结构、代码结构</li><li>有利于SEO：和搜索引擎建立良好沟通，有助于爬虫抓取更多的有效信息：爬虫依赖标签来确定上下文和各个关键字的权重；</li><li>方便其他设备解析（如屏幕阅读器、盲人阅读器、移动设备）以意义的方式来渲染网页；</li><li>便于团队开发和维护，语义化更具有可读性，遵循W3C标准的团队都遵循这个标准，可以减少差异化。</li></ul><h3 id="书写HTML代码时应注意什么？"><a href="#书写HTML代码时应注意什么？" class="headerlink" title="书写HTML代码时应注意什么？"></a>书写HTML代码时应注意什么？</h3><ul><li>尽可能少使用无语义的标签<code>div</code>和<code>span</code></li><li>在语义不明显时，即可以使用<code>div</code>标签和<code>p</code>标签时，尽量使用<code>p</code>标签，因为p标签在默认情况下有上下间距，对兼容特殊终端有利；</li><li>不要使用纯样式标签，例如：<code>b</code>、<code>font</code>、<code>u</code>等，改用css设置。</li><li>需要强调的文本，可以包含在<code>strong</code>或者<code>em</code>标签中（替换 b/i）</li><li>使用表格时，标题要用<code>caption</code>，表头要用<code>thead</code>，主体部分用<code>tbody</code>包围，尾部用<code>tfoot</code>。表头和一般单位格要区分开，表头用<code>th</code>，单元格用<code>td</code></li><li>表单域要用<code>fieldset</code>标签包起来，并用<code>legend</code>标签说明表单的用途</li><li>每个<code>input</code>标签对应的说明文本都需要使用<code>label</code>标签，并且通过<code>input</code>设置id属性，在lable标签中设置<code>for=someld</code>来让说明文本和相对应的<code>input</code>关联起来</li></ul><h3 id="input新增的type"><a href="#input新增的type" class="headerlink" title="input新增的type"></a>input新增的type</h3><ul><li>email</li><li>url</li><li>number</li><li>range</li><li>date —— 选取年、月、日</li><li>month —— 选取年、月</li><li>week —— 选取周、年</li><li>time —— 选取时间（小时和分钟）</li><li>datetime —— 选取时间、年、月、日（UTC时间）</li><li>datetime-local —— 选取时间、年、月、日（本地时间）</li></ul><h3 id="表单属性"><a href="#表单属性" class="headerlink" title="表单属性"></a>表单属性</h3><ul><li><code>autocomplete</code>：自动完成，适用于<code>&lt;form&gt;</code>标签，以及以下类型的<code>&lt;input&gt;</code>标签：text，search，url，email，password，datepickers，range，color。用法：<code>&lt;form autocomplete=&quot;on&quot;&gt;&lt;/form&gt;</code>或者单独在input中使用off</li><li><code>autofocus</code>：自动地获取焦点，适用于所有<code>&lt;input&gt;</code>标签的类型用法：<code>&lt;input autofocus=&quot;autofocus&quot; /&gt;</code></li><li><code>multiple</code>：可选择多个值，适用于<code>&lt;input&gt;</code>中的type为<code>email</code>和<code>file</code>，用法：<code>&lt;input type=&quot;file&quot; multiple=&quot;multiple&quot; /&gt;</code></li><li><code>placeholder</code>：适用于<code>&lt;input&gt;</code>中的type为：text，search，url，email，pasword</li><li><code>required</code>：规定不能为空，适用于<code>&lt;input&gt;</code>标签中的type为：text，search，url，email，password，date pickers，number，checkbox，radio，file，用法：<code>&lt;input type=&quot;text&quot; required=&quot;required&quot; /&gt;</code></li></ul><h3 id="Web-Storage"><a href="#Web-Storage" class="headerlink" title="Web Storage"></a>Web Storage</h3><p>使用HTML5可以在本地存储用户的浏览数据。早些时候，本地存储使用的是<code>cookies</code>。但是Web存储需要更加的安全和快速。</p><p>这些数据不会保存在服务器上，但是这些数据只用于用户请求网站数据上，它也可以存储大量的数据，而不影响网站的性能。数据以 键值对 存在，web网页的数据只允许该网页访问使用。</p><p>客户端存储数据的两个对象为：</p><ul><li>localStorage：没有时间限制的数据存储</li><li>sessionStorage：针对一个session的数据存储，当用户关闭浏览器窗口后，数据会被删除。</li></ul><p>不管是 <code>localStorage</code>还是<code>sessionStorage</code>，可以使用的API都相同，常用的如下几个（以localStorage为例）：</p><ul><li><p>存储数据：localStorage.setItem(key,value)；</p></li><li><p>读取数据：localStorage.getItem(key)；</p></li><li><p>删除单个数据：localStorage.removeItem(key)；</p></li><li><p>清空所有数据：localStorage.clear()；</p></li></ul>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> html </tag>
-            
-            <tag> css </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>这一次，彻底弄懂px、em、rem、%、vw、vh、vm</title>
-      <link href="danwei/"/>
-      <url>danwei/</url>
-      
-        <content type="html"><![CDATA[<h1 id="这一次，彻底弄懂em、rem、vw、vh"><a href="#这一次，彻底弄懂em、rem、vw、vh" class="headerlink" title="这一次，彻底弄懂em、rem、vw、vh"></a>这一次，彻底弄懂em、rem、vw、vh</h1><h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>随着Web的发展，对页面要求的提高，很多时候我们都需要去适配多个设备，这就需要我们对不同的单位进行深入的了解，让我们能够做到在什么地方，使用什么单位进行开发最为合适，本篇文章都会来告诉你，让你彻底弄懂各个单位的使用方法。</p><h3 id="em"><a href="#em" class="headerlink" title="em"></a>em</h3><p>em是一个相对单位，参考物是父元素的 <code>font-size</code> ，具有继承的特点。如果自身定义了 <code>font-size</code>按自身来计算（浏览器默认字体是16px），整个页面内1em不是一个固定的值。</p><p>特点：</p><ol><li>em会继承父级元素的字体大小</li><li>em的值并不是固定的</li></ol><h3 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h3><p>rem也是一个相对单位，但是它是相对于根元素的，这样就意为者，我们只需要在根元素确定一个参考值，比如我们设置<code>html</code>字体为大小为<code>10px</code>，在页面的其他地方设置<code>2rem</code>其实就是<code>20px</code>，以此类推。</p><h3 id="vw"><a href="#vw" class="headerlink" title="vw"></a>vw</h3><p>vw是相对于视口的宽度。你可以理解为它是一个百分比单位，只是它的参考物永远都是视口宽度</p><h3 id="vh"><a href="#vh" class="headerlink" title="vh"></a>vh</h3><p>vh是相对于视口的高度，同样的，你也可以理解为是一个百分比单位，只是参考物永远都是视口高度</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 移动端 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>手动实现call-apply-bind</title>
       <link href="call-apply-bind/"/>
       <url>call-apply-bind/</url>
