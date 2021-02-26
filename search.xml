@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>sell</title>
+      <link href="sell/"/>
+      <url>sell/</url>
+      
+        <content type="html"><![CDATA[<h1 id="百果售货机项目总结"><a href="#百果售货机项目总结" class="headerlink" title="百果售货机项目总结"></a>百果售货机项目总结</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>该项目是本人进入到公司接触第一个项目，项目不是很大，只包括后台、运营端和用户端，本人负责的是运营端和用户端。</p><p>根据客户需求，运营端和用户端都是使用<code>uniapp</code>开发的小程序。</p><p>本次项目学习到的主要知识点不多，大多都是在真正的企业级别开发中需要注意的东西，这篇文章也算是给自己提个醒。💪</p><h2 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h2><ul><li>uniapp</li><li>vue.js</li><li>uni ui</li></ul><h2 id="开发前的准备"><a href="#开发前的准备" class="headerlink" title="开发前的准备"></a>开发前的准备</h2><p>进入到公司第一天，老板不一定会给你直接上手项目，一般都是先看一下文档，或者拉取之前项目的代码来进行理解，以便更好的理解。</p><p>看不下去也很正常，但是你只需要了解大概的结构，了解一下项目用到的技术栈，需要特别注意的是项目运用的框架、ui库、请求工具</p><p>如果觉得自己准备妥当了，你还可以写个dome来练练手，千万不要坐着什么都不干！😡</p><p>还有就是老板或者是技术负责人跟你讲工作上要注意的事的时候，一定要认真听。可以问一下接下来你要接手的项目是一个怎么样的类型，提前做到准备。</p><p>无所事事是大忌😡</p><h2 id="开发总结"><a href="#开发总结" class="headerlink" title="开发总结"></a>开发总结</h2><h3 id="uniapp视图响应"><a href="#uniapp视图响应" class="headerlink" title="uniapp视图响应"></a>uniapp视图响应</h3><p>使用过uniapp开发过小程序的都清楚，视图响应是一大痛点，你很多使用都需要使用到<code>watch</code>监听器开监听变化，但是有些时候视图就是不会变化。这个时候，如果是图片不响应的话，可以使用<code>this.$forceUpdate()</code>来更新视图。如果是数据的话，在使用<code>watch</code>和<code>this.$forceUpdate()</code>之后还是不响应的话，可以使用<code>computed</code>计算属性，大多都能得到解决。悄悄说一句，组件的传值<code>props</code>也可以监听😀</p><h3 id="向上一级页面传值"><a href="#向上一级页面传值" class="headerlink" title="向上一级页面传值"></a>向上一级页面传值</h3><p>我们可以通过获取上一级页面的页面栈，在通过<code>setData</code>进行传值，在返回上一级页面的时候也是通过获取到当前页面的页面栈，来获取到传递过来的数据。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当前页面传值</span></span><br><span class="line"><span class="keyword">let</span> pages = getCurrentPages();</span><br><span class="line"><span class="keyword">let</span> prevPage = pages[pages.length - <span class="number">2</span>]; <span class="comment">//上一个页面</span></span><br><span class="line">prevPage.setData(&#123;</span><br><span class="line">    ways: ways, <span class="comment">// 传递的数据</span></span><br><span class="line">    info: info</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上级页面接受值</span></span><br><span class="line"><span class="keyword">let</span> pages = getCurrentPages();</span><br><span class="line"><span class="keyword">let</span> currPage = pages[pages.length - <span class="number">1</span>]; <span class="comment">//当前页面</span></span><br><span class="line"><span class="built_in">console</span>.log(currPage.data); <span class="comment">// 传递过来的数据</span></span><br></pre></td></tr></table></figure><h3 id="设置全局变量"><a href="#设置全局变量" class="headerlink" title="设置全局变量"></a>设置全局变量</h3><p>在需要使用到全局变量，但是存储在<code>storage</code>里又不太合适的时候，可以使用uni这个全局变量来存储</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uni.属性名 = 属性值;</span><br></pre></td></tr></table></figure><h3 id="自定义导航栏"><a href="#自定义导航栏" class="headerlink" title="自定义导航栏"></a>自定义导航栏</h3><p>在真正的企业开发中，很多时候都需要我们来自定义导航栏，这需要注意到很多东西。</p><ol><li><p>在pages.json中对应的页面<code>style</code>中配置<code>&quot;navigationStyle&quot;</code>的值为<code> &quot;custom&quot;</code>。</p></li><li><p>在很多时候我们需要获取到我们导航栏的高度来进行适配。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> SystemInfoHeight = uni.getSystemInfoSync()[<span class="string">&#x27;statusBarHeight&#x27;</span>] + <span class="number">44</span>;</span><br><span class="line"><span class="built_in">console</span>.log(SystemInfoHeight); <span class="comment">// 自定义导航栏的高度，注意单位是px</span></span><br></pre></td></tr></table></figure></li></ol><h3 id="适配全面屏底部小黑条"><a href="#适配全面屏底部小黑条" class="headerlink" title="适配全面屏底部小黑条"></a>适配全面屏底部小黑条</h3><p>现在的很多手机都已经是全面屏了，其中很多底部都是有小黑条的，这就需要我们进行底部适配，达到更好的用户体验。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> systemInfo = uni.getSystemInfoSync();</span><br><span class="line"><span class="keyword">let</span> height = (systemInfo.screenHeight - systemInfo.safeArea.height - systemInfo.statusBarHeight);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(height); <span class="comment">// 当前底部小黑条的高度</span></span><br></pre></td></tr></table></figure><p>在最外层组件设置<code>padding-bottom</code>为<code>height</code>；</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">:style</span>=<span class="string">&quot;&#123;&#x27;padding-bottom&#x27;: height + &#x27;rpx&#x27;&#125;&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 项目总结 </tag>
+            
+            <tag> uniapp </tag>
+            
+            <tag> 微信小程序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>手动实现call-apply-bind</title>
       <link href="call-apply-bind/"/>
       <url>call-apply-bind/</url>
@@ -304,9 +333,9 @@
       
         <tags>
             
-            <tag> Vue.js </tag>
-            
             <tag> 项目总结 </tag>
+            
+            <tag> Vue.js </tag>
             
             <tag> Nuxt.js </tag>
             
@@ -333,9 +362,9 @@
       
         <tags>
             
-            <tag> Vue.js </tag>
-            
             <tag> 项目总结 </tag>
+            
+            <tag> Vue.js </tag>
             
         </tags>
       
